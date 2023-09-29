@@ -1,0 +1,45 @@
+{
+    "name": "pop-framework/core",
+    "description": "A PHP8+ MVC Micro Framework",
+    "license": "MIT",
+    "prefer-stable": true,
+    "minimum-stability": "stable",  
+    "authors": [
+        {
+            "name": "Arnaud BODEL",
+            "email": "arnaud.bodel@gmail.com",
+            "role": "Initial Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Pop\\": "launcher/",
+            "Pop\\Cache\\": "cache/",
+            "Pop\\Cli\\": "cli/",
+            "Pop\\Compiler\\": "compiler/",
+            "Pop\\Configuration\\": "configuration/",
+            "Pop\\Controller\\": "controller/",
+            "Pop\\Database\\": "database/",
+            "Pop\\Environment\\": "environment/",
+            "Pop\\Error\\": "error/",
+            "Pop\\FileSystem\\": "file-system/",
+            "Pop\\Framework\\": "framework/",
+            "Pop\\Form\\": "form/",
+            "Pop\\Http\\": "http/",
+            "Pop\\Model\\": "model/",
+            "Pop\\Parameters\\": "parameters/",
+            "Pop\\Routing\\": "routing/",
+            "Pop\\Security\\": "security/",
+            "Pop\\Template\\": "template/"
+        },
+        "files": ["functions/autoload.php"]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Pop\\Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "php": ">=8.0"
+    }
+}

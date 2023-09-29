@@ -1,0 +1,28 @@
+# Phpunit-bridge
+.phpunit
+.phpunit.result.cache
+/phpunit.xml
+
+# dependencies
+/node_modules/
+/vendor
+
+# IDE - VSCode
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.code-workspace
+*.sublime-workspace
+
+# System Files
+.DS_Store
+Thumbs.db
