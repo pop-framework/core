@@ -3,6 +3,7 @@ namespace Pop\Database;
 
 use Pop\Configuration\ConfigurationFactory;
 use Pop\Configuration\ConfigurationInterface;
+use Pop\Database\Commands\DatabaseStart;
 
 class DatabaseFactory extends ConfigurationFactory implements ConfigurationInterface
 {
@@ -21,6 +22,11 @@ class DatabaseFactory extends ConfigurationFactory implements ConfigurationInter
 
         // Validate & Add custom routes
         array_walk($databases, function($database) {$this->add($database);});
+
+        if ($this->launcher->support === 'cli')
+        {
+            $this->launcher->cli->addCommand(DatabaseStart::class);
+        }
 
         return $this;
     }

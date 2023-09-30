@@ -10,8 +10,11 @@ class Serve extends AbstractCommands
         return "serve";
     }
 
-    public function execute(): void
+    public function execute(array $options=[]): void
     {
-        shell_exec("php -S localhost:1234 -t public/");
+        $port = $options['port'] ?? $options['p'] ?? 8080;
+        $target = $options['target'] ?? $options['t'] ?? 'public/';
+
+        shell_exec("php -S localhost:$port -t $target");
     }
 }
