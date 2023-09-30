@@ -3,6 +3,7 @@ namespace Pop\Compiler;
 
 use Pop\Launcher;
 use Pop\Compiler\Support;
+use Pop\Components\ComponentFactory;
 use Pop\FileSystem\Path;
 use Pop\Http\Request;
 // use Pop\Compiler\Compiler;
@@ -17,6 +18,7 @@ class Compiler
     private string $engine;
 
     public ParametersFactory $parameters;
+    public ComponentFactory $components;
     public Request $request;
     public RouterFactory $router;
     public UrlGenerator $url;
@@ -28,6 +30,7 @@ class Compiler
         $this->path = new Path;
 
         $this->parameters = $this->launcher->parameters;
+        $this->components = $this->launcher->components;
         $this->request    = $this->launcher->request;
         $this->router     = $this->launcher->router;
         $this->url        = new UrlGenerator($this->launcher->routes);

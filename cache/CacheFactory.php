@@ -32,7 +32,7 @@ class CacheFactory extends ConfigurationFactory implements ConfigurationInterfac
         );
         $this->launcher->framework->set('cache_root', $cacheRoot);
 
-
+        // Add commands for CLI
         if ($this->launcher->support === 'cli')
         {
             $this->launcher->cli->addCommand(CacheClear::class);

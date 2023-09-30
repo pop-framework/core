@@ -17,6 +17,7 @@
             "Pop\\Cache\\": "cache/",
             "Pop\\Cli\\": "cli/",
             "Pop\\Compiler\\": "compiler/",
+            "Pop\\Components\\": "components/",
             "Pop\\Configuration\\": "configuration/",
             "Pop\\Controller\\": "controller/",
             "Pop\\Database\\": "database/",

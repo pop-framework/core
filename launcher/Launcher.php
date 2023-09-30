@@ -4,6 +4,7 @@ namespace Pop;
 use Pop\Routing\Matcher;
 use Pop\Cache\CacheFactory;
 use Pop\Cli\CliFactory;
+use Pop\Components\ComponentFactory;
 use Pop\Error\ErrorFactory;
 use Pop\Routing\RouterFactory;
 use Pop\Routing\RoutesFactory;
@@ -28,6 +29,7 @@ class Launcher
     public RouterFactory $router;
     public RoutesFactory $routes;
     public SecurityFactory $security;
+    public ComponentFactory $components;
     public TemplateFactory $template;
     public ParametersFactory $parameters;
     public Request $request;
@@ -58,10 +60,10 @@ class Launcher
         {
             $this->routes = new RoutesFactory($this);
             $this->security = new SecurityFactory($this);
+            $this->components = new ComponentFactory($this);
             $this->template = new TemplateFactory($this);
             $this->request = new Request($this);
         }
-
     }
 
     public function start()
