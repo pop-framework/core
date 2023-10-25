@@ -4,11 +4,11 @@ namespace Pop\Database\Commands;
 use Pop\Cli\AbstractCommands;
 use Pop\Database\DatabaseConnection;
 
-class DatabaseCreate extends AbstractCommands
+class DatabaseSchemaCreate extends AbstractCommands
 {
     public static function getName(): string
     {
-        return "db:create";
+        return "db:schema:create";
     }
 
     public function execute(array $options=[]): void
@@ -23,7 +23,6 @@ class DatabaseCreate extends AbstractCommands
         foreach ($config as $name => $info)
         {
             $stmt = $connections->getStmt($name);
-
 
             if ($this->isSchemaExist($stmt, $info['schema']))
             {

@@ -1,11 +1,12 @@
 <?php 
 namespace Pop\Database;
 
+use Pop\Database\Commands\DatabaseStart;
 use Pop\Configuration\ConfigurationFactory;
 use Pop\Configuration\ConfigurationInterface;
-use Pop\Database\Commands\DatabaseCreate;
-use Pop\Database\Commands\DatabaseDrop;
-use Pop\Database\Commands\DatabaseStart;
+use Pop\Database\Commands\DatabaseSchemaDrop;
+use Pop\Database\Commands\DatabaseSchemaCreate;
+use Pop\Database\Commands\DatabaseTablesCreate;
 
 class DatabaseFactory extends ConfigurationFactory implements ConfigurationInterface
 {
@@ -13,6 +14,9 @@ class DatabaseFactory extends ConfigurationFactory implements ConfigurationInter
 
     public function loader(): self
     {
+        // Load Database config
+        // --
+
         // Custom configuration file location
         $file = $this->path->join(
             $this->launcher->framework->get('project_root'),
@@ -25,11 +29,17 @@ class DatabaseFactory extends ConfigurationFactory implements ConfigurationInter
         // Validate & Add custom routes
         array_walk($databases, function($database) {$this->add($database);});
 
+
+
+        // Load CLI commands
+        // --
+
         if ($this->launcher->support === 'cli')
         {
             $this->launcher->cli->addCommand(DatabaseStart::class);
-            $this->launcher->cli->addCommand(DatabaseCreate::class);
-            $this->launcher->cli->addCommand(DatabaseDrop::class);
+            $this->launcher->cli->addCommand(DatabaseSchemaCreate::class);
+            $this->launcher->cli->addCommand(DatabaseSchemaDrop::class);
+            $this->launcher->cli->addCommand(DatabaseTablesCreate::class);
         }
 
         return $this;

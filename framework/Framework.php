@@ -13,6 +13,11 @@ abstract class Framework {
             'require' => false,
             'default' => "config/database.php",
         ],
+        'configuration_folder_database' => [
+            'type'    => 'string',
+            'require' => false,
+            'default' => "database",
+        ],
         'configuration_file_environment' => [
             'type'    => 'string',
             'require' => false,

@@ -4,11 +4,11 @@ namespace Pop\Database\Commands;
 use Pop\Cli\AbstractCommands;
 use Pop\Database\DatabaseConnection;
 
-class DatabaseDrop extends AbstractCommands
+class DatabaseSchemaDrop extends AbstractCommands
 {
     public static function getName(): string
     {
-        return "db:drop";
+        return "db:schema:drop";
     }
 
     public function execute(array $options=[]): void
