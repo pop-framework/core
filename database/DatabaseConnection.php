@@ -29,11 +29,11 @@ class DatabaseConnection
     protected \PDO $stmt;
     protected string $sql;
 
-    public function __construct(DatabaseFactory $databaseFactory)
+    public function __construct(DatabaseFactory $databaseFactory, $dsnWithSchema = true)
     {
         foreach($databaseFactory->getAll() as $name => $settings)
         {
-            $dsn  = $settings['dsn'];
+            $dsn  = $this->dsn($settings, $dsnWithSchema);
             $user = $settings['user'];
             $pass = $settings['pass'];
 
@@ -66,6 +66,10 @@ class DatabaseConnection
     {
         return $this->connection;
     }
+    public function getStmt(string $name): \PDO 
+    {
+        return $this->connections[$name];
+    }
 
     public function setTable(?string $name = null): self
     {
@@ -81,5 +85,24 @@ class DatabaseConnection
         $this->table = $name;
 
         return $this;
+    }
+
+    private function dsn(array $db, bool $dsnWithSchema=true): string
+    {     
+        $dsn = $db['driver'].":";
+        $dsn.= "host=".$db['host'].";";
+        $dsn.= "port=".$db['port'].";";
+
+        if ($dsnWithSchema)
+        {
+            $dsn.= "dbname=".$db['schema'].";";
+        }
+
+        if (!empty($db['charset']))
+        {
+            $dsn.= "charset=".$db['charset'].";";
+        }
+
+        return $dsn;
     }
 }

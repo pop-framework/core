@@ -82,9 +82,14 @@ class CliFactory extends ConfigurationFactory implements ConfigurationInterface
                     $x = explode('=', $arg);
                     $option = $arg;
 
+
                     if (count($x) === 2)
                     {
                         $this->options[name($x[0])] = $x[1];
+                    }
+                    else if (count($x) === 1)
+                    {
+                        $this->options[name($x[0])] = true;
                     }
                 }
                 else 
@@ -95,7 +100,6 @@ class CliFactory extends ConfigurationFactory implements ConfigurationInterface
 
                 array_shift($this->options);
             }
-            // print_r($this->options);
         }
 
         return $this;

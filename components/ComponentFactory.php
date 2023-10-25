@@ -33,13 +33,6 @@ class ComponentFactory extends ConfigurationFactory implements ConfigurationInte
         {
             if (method_exists($componentClass, 'name'))
             {
-                // print_r([
-                //     strtolower($component),
-                //     strtolower($componentClass::name()),
-                //     strtolower($component) === strtolower($componentClass::name()),
-                //     (new $componentClass)->load()
-                // ]);
-
                 if (strtolower($component) === strtolower($componentClass::name()))
                 {
                     return (new $componentClass)->load(...$arguments);

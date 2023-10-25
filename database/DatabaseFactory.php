@@ -3,6 +3,8 @@ namespace Pop\Database;
 
 use Pop\Configuration\ConfigurationFactory;
 use Pop\Configuration\ConfigurationInterface;
+use Pop\Database\Commands\DatabaseCreate;
+use Pop\Database\Commands\DatabaseDrop;
 use Pop\Database\Commands\DatabaseStart;
 
 class DatabaseFactory extends ConfigurationFactory implements ConfigurationInterface
@@ -26,6 +28,8 @@ class DatabaseFactory extends ConfigurationFactory implements ConfigurationInter
         if ($this->launcher->support === 'cli')
         {
             $this->launcher->cli->addCommand(DatabaseStart::class);
+            $this->launcher->cli->addCommand(DatabaseCreate::class);
+            $this->launcher->cli->addCommand(DatabaseDrop::class);
         }
 
         return $this;
@@ -42,7 +46,7 @@ class DatabaseFactory extends ConfigurationFactory implements ConfigurationInter
         $pass    = $this->pass($database);
         $schema  = $this->schema($database);
         $prefix  = $this->prefix($database);
-        $dsn     = $this->dsn($database);
+        // $dsn     = $this->dsn($database);
 
         $this->databases[$name] = [
             'driver'  => $driver,
@@ -53,7 +57,7 @@ class DatabaseFactory extends ConfigurationFactory implements ConfigurationInter
             'pass'    => $pass,
             'schema'  => $schema,
             'prefix'  => $prefix,
-            'dsn'     => $dsn,
+            // 'dsn'     => $dsn,
         ];
 
         return $this;
@@ -138,18 +142,18 @@ class DatabaseFactory extends ConfigurationFactory implements ConfigurationInter
         return $db['prefix'];
     }
 
-    private function dsn(array $db): string
-    {     
-        $dsn = $db['driver'].":";
-        $dsn.= "host=".$db['host'].";";
-        $dsn.= "port=".$db['port'].";";
-        $dsn.= "dbname=".$db['schema'].";";
+    // private function dsn(array $db): string
+    // {     
+    //     $dsn = $db['driver'].":";
+    //     $dsn.= "host=".$db['host'].";";
+    //     $dsn.= "port=".$db['port'].";";
+    //     $dsn.= "dbname=".$db['schema'].";";
 
-        if (!empty($db['charset']))
-        {
-            $dsn.= "charset=".$db['charset'].";";
-        }
+    //     if (!empty($db['charset']))
+    //     {
+    //         $dsn.= "charset=".$db['charset'].";";
+    //     }
 
-        return $dsn;
-    }
+    //     return $dsn;
+    // }
 }
