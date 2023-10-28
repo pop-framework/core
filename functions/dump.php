@@ -6,7 +6,7 @@ function dump(mixed $data, bool $varDump = false): void
     $caller = $traces[0];
     
     echo "<div>".$caller['file'].":".$caller['line']."</div>";
-    echo "<pre>";
+    echo '<pre class="dump">';
     $varDump ? var_dump($data) : print_r($data);
-    echo "</pre>";
+    echo '</pre>';
 }
